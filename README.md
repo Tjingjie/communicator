@@ -1,6 +1,32 @@
 # communicator
 桥牌网页端与服务器端的通信接口
 
+## bridge.domain.CallContract
+为bridge.domain扩增的类
+该类继承于bridge.domain.Contract，用于表示玩家的叫品。
+该类包含的方法如下：
+```java
+public CallContract(String contract) {
+		/**
+		 * 叫品为实质性叫品时使用的构造函数，此时该类表示的意义与其父类基本相同
+		 */
+		super(contract);
+		meaningful=true;
+	}
+	public CallContract(int type) {
+		/**
+		 * 叫品不为实质性叫品时使用的构造函数，此时该类只有callType属性有意义。
+		 * callType属性只有三种取值：CallContact.PASS、CallContact.DOUBLE、CallContact.REDOUBLE分别对应相应叫品
+		 */
+		super();
+		meaningful=false;
+		callType=type;
+	}
+	int getCallType() {//获取玩家叫品的方法（仅当meaningful为false时使用有效,否则请使用父类的方法）
+		return callType;
+	}
+```
+
 ## com.poker.PokerCommunicator
 供后台使用的通信类，提供了后台向客户端发送数据时的方法，内部对数据进行了格式转换
 该类提供的接口方法如下

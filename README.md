@@ -48,4 +48,16 @@ public static Card getCard(String message)//获取该玩家出的牌的方法
 ```
 
 ## commnunicator.js
-供前端调用的js
+供前端调用的js.文件使用前需将文件开头定义的socketurl修改为服务器端websocket对应的url
+为前端供了与服务器端通信的方法。包含以下函数：
+
+```javascript
+function initConnect(onGetMessage)//初始化连接的方法，通信前需调用该方法建立连接
+function getDeck(message)//根据服务器端数据解析为玩家手牌的方法，该方法返回一组牌（明手牌的获取也使用该方法）
+function getPlayerPosition(message)//根据数据解析为当前行动玩家方的方法，该方法返回一个玩家位置标志（叫牌和出牌玩家方的获取均使用此方法)
+function getCallContract() //根据服务器消息解析为玩家叫品的方法，该方法返回一个叫品
+function getCard(message)//根据服务器消息解析为玩家所出牌的方法,该方法返回一张牌
+function sendCallContract(CallContract)//发送叫牌信息的方法
+function sendCard(card)//发送出牌消息的方法
+```
+

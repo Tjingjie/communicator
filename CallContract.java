@@ -1,4 +1,7 @@
 package bridge.domain;
+
+import javax.persistence.criteria.CriteriaBuilder.Case;
+
 /**
  * 表示玩家的叫品类
  * 
@@ -18,7 +21,7 @@ public class CallContract extends Contract {
 		super(contract);
 		meaningful=true;
 	}
-	public CallContract(int type) {
+	public CallContract(int type,PlayerPosition position) {
 		/**
 		 * 叫品不为实质性叫品时使用的构造函数，此时该类只有callType属性有意义。
 		 * callType属性只有三种取值：CallContact.PASS、CallContact.DOUBLE、CallContact.REDOUBLE分别对应相应叫品
@@ -26,8 +29,34 @@ public class CallContract extends Contract {
 		super();
 		meaningful=false;
 		callType=type;
+		setPlayerPosition(position);
 	}
 	int getCallType() {//获取玩家叫品的方法（仅当meaningful为false时使用有效）
 		return callType;
+	}
+	
+	@Override
+	public String getShortString() {//重写了getShortString方法，便于通信转换
+		// TODO Auto-generated method stub
+		if(meaningful) {
+			return super.getShortString();
+		}else {
+			String callname;
+			switch (callType) {
+			case PASS:
+				callname="P";
+				break;
+			case DOUBLE:
+				callname="D";
+				break;
+			case REDOUBLE:
+				callname="R";
+				break;
+			default:
+				callname="P";
+				break;
+			}
+			return getPlayerPosition().getFirstLetter()+":"+callname;
+		}
 	}
 }

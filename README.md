@@ -53,7 +53,7 @@ public static Card getCard(String message)//获取该玩家出的牌的方法
 为前端供了与服务器端通信的方法。包含以下函数：
 
 ```javascript
-function initConnect(onGetMessage)//初始化连接的方法，通信前需调用该方法建立连接
+function initConnect(onGetMessage)//初始化连接的方法，通信前需调用该方法建立连接。参数onGetMessage为调用者定义的相应方法，该方法定义形式为：function onGetMessage(message)，其中message为客户端发来的消息，message在调用此接口的一系列get方法时作为参数。
 function getDeck(message)//根据服务器端数据解析为玩家手牌的方法，该方法返回一组牌（已排序，明手牌的获取也使用该方法）
 function getPlayerPosition(message)//根据数据解析为当前行动玩家方的方法，该方法返回一个玩家位置标志（叫牌和出牌玩家方的获取均使用此方法)
 function getCallContract(message) //根据服务器消息解析为玩家叫品的方法，该方法返回一个叫品

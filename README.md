@@ -46,6 +46,7 @@ public void send(CallContract contract) throws IOException//发送玩家叫品�
 ```java
 public static CallContract getCallContract(String message)//解析玩家发出的叫牌信息方法
 public static Card getCard(String message)//获取该玩家出的牌的方法
+public static List<Card>sort(List<Card> cards){//对牌组排序的方法，产生按♠、♥、♦、♣及牌点顺序排列的牌组
 ```
 
 ## commnunicator.js
